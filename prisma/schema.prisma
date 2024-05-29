@@ -23,6 +23,26 @@ model properties {
   description String
   type        PropertyType
   images      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  //Single search index
+  @@index([type])
+  @@index([price])
+  @@index([bedrooms])
+  @@index([area])
+
+  // Composite indexes for filter combinations
+  @@index([type, price])
+  @@index([type, bedrooms])
+  @@index([type, area])
+
+  @@index([price, bedrooms])
+  @@index([price, area])
+
+  @@index([bedrooms, area])
+
+  @@index([type, price, bedrooms, area])
 }
 
 enum PropertyType {

@@ -11,6 +11,12 @@ const typeDefs = `#graphql
     images: [String]
   }
 
+  type PropertyResponse {
+    properties : [Property]
+    hasMore : boolean
+    totalCount : Int
+  }
+
   type Query {
     get_properties(
       type: String, 
@@ -20,7 +26,7 @@ const typeDefs = `#graphql
       maxBedrooms: Int, 
       minArea: Float, 
       maxArea: Float
-    ): [Property]
+    ): PropertyResponse
   }
 `;
 
