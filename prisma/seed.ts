@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import { PrismaClient, PropertyType } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const BATCH_SIZE = 50_000;
+const BATCH_SIZE = 30_000;
 const TOTAL_ROWS = 10_00_000; // 1 million rows
 
 const images = [

@@ -25,8 +25,12 @@ const typeDefs = `#graphql
       minBedrooms: Int, 
       maxBedrooms: Int, 
       minArea: Float, 
-      maxArea: Float
+      maxArea: Float,
+      skip : Int,
+      count : Int,
     ): PropertyResponse
+
+    get_property(id : ID): Property
   }
 `;
 
