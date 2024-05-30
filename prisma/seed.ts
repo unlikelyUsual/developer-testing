@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import { PrismaClient, PropertyType } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const BATCH_SIZE = 50_000;
+const BATCH_SIZE = 30_000;
 const TOTAL_ROWS = 10_00_000; // 1 million rows
 
 const images = [
@@ -17,7 +17,7 @@ const images = [
 const getRandomData = () => ({
   project: faker.company.name(),
   title: faker.lorem.words(3),
-  description: faker.lorem.paragraph(),
+  description: faker.lorem.sentence(),
   price: parseFloat(faker.commerce.price({ min: 5000, max: 15000, dec: 2 })),
   bedrooms: faker.number.int({ min: 1, max: 5 }),
   area: faker.number.int({ min: 100, max: 2500 }),
