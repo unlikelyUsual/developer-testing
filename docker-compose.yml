@@ -1,22 +1,41 @@
 version: "3.8"
 
 services:
-  nextjs:
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mysql
-
   mysql:
     image: mysql:5.7
+    container_name: mysql
+    platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: dev
     ports:
       - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
 
-volumes:
-  mysql-data:
+  nextjs:
+    build: .
+    container_name: nextjs
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=mysql://root:password@mysql:3306/dev
+    ports:
+      - "3000:3000"
+    # entrypoint: ["sh", "-c", "./wait-for-it.sh mysql:3306 -- npm run deploy"]
+    command:
+      [
+        "sh",
+        "-c",
+        "./wait-for-it.sh mysql:3306 -- npm run deploy && npm run start",
+      ]
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
