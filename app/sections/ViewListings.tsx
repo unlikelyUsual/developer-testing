@@ -1,12 +1,17 @@
 "use client";
 import { GET_PROPERTIES } from "@/lib/graphql/queries";
 import { useQuery } from "@apollo/client";
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import { Box, Callout, Flex, Spinner } from "@radix-ui/themes";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ExclamationTriangleIcon,
+} from "@radix-ui/react-icons";
+import { Box, Button, Callout, Flex, Spinner } from "@radix-ui/themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { PropertyFilters } from "../components/inputs/PropertyFilters";
 import { ListingsGrid } from "../components/ListingsGrid";
+import { FETCH_LISTINGS_LIMIT } from "../constants";
 import { FilterOptions, Listing } from "../types/index";
 
 export const ViewListings = (props: {
@@ -31,6 +36,17 @@ export const ViewListings = (props: {
     }
   );
 
+  const [pagination, setPagination] = useState({
+    limit: FETCH_LISTINGS_LIMIT,
+    offset: 0,
+  });
+
+  const fetchPrev = () =>
+    setPagination((p) => ({ ...p, offset: p.offset - p.limit }));
+
+  const fetchNext = () =>
+    setPagination((p) => ({ ...p, offset: p.offset + p.limit }));
+
   const { data, loading, error } = useQuery(GET_PROPERTIES, {
     variables: {
       type: filterOptions.listingType,
@@ -40,6 +56,8 @@ export const ViewListings = (props: {
       maxBedrooms: filterOptions?.bedroomCountRange?.max || null,
       minArea: filterOptions?.livingAreaRange?.min || null,
       maxArea: filterOptions?.livingAreaRange?.max || null,
+      skip: pagination.offset,
+      count: pagination.limit,
     },
   });
 
@@ -57,7 +75,7 @@ export const ViewListings = (props: {
   return (
     <Flex
       direction={{ initial: "column", xs: "column", sm: "row" }}
-      gap="4"
+      gap="5"
       position={"relative"}
       align={"start"}
       py={"3"}
@@ -71,21 +89,36 @@ export const ViewListings = (props: {
       >
         <PropertyFilters filterOptions={filterOptions} onSubmit={onSubmit} />
       </Box>
+
       {loading && (
         <Flex justify={"center"}>
           <Spinner size="3" />
         </Flex>
       )}
+
       {error && (
-        <Callout.Root color="amber">
-          <Callout.Icon>
-            <ExclamationTriangleIcon />
-          </Callout.Icon>
-          <Callout.Text>Could not fetch, try again later</Callout.Text>
-        </Callout.Root>
+        <div className="flex justify-items-center text-center w-10">
+          <Callout.Root color="amber">
+            <Callout.Icon>
+              <ExclamationTriangleIcon />
+            </Callout.Icon>
+            <Callout.Text>Could not fetch, try again later</Callout.Text>
+          </Callout.Root>
+        </div>
       )}
       {data && data.get_properties && (
-        <ListingsGrid listings={data.get_properties.properties}></ListingsGrid>
+        <ListingsGrid listings={data.get_properties.properties}>
+          <Flex gap="4" justify={"center"} align={"center"}>
+            <Button disabled={pagination.offset === 0} onClick={fetchPrev}>
+              <ArrowLeftIcon />
+              Previous
+            </Button>
+            <Button disabled={!data.get_properties.hasMore} onClick={fetchNext}>
+              <ArrowRightIcon />
+              Next
+            </Button>
+          </Flex>
+        </ListingsGrid>
       )}
     </Flex>
   );

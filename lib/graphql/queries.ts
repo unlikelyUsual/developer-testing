@@ -9,6 +9,8 @@ export const GET_PROPERTIES = gql`
     $maxBedrooms: Int
     $minArea: Float
     $maxArea: Float
+    $skip: Int
+    $count: Int
   ) {
     get_properties(
       type: $type
@@ -18,6 +20,8 @@ export const GET_PROPERTIES = gql`
       maxBedrooms: $maxBedrooms
       minArea: $minArea
       maxArea: $maxArea
+      skip: $skip
+      count: $count
     ) {
       properties {
         id
