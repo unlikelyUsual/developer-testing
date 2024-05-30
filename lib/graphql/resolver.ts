@@ -32,13 +32,15 @@ const resolvers = {
         },
       };
 
+      // console.log(`where`, where);
+
       const [properties, totalCount] = await Promise.all([
-        ctx.prisma.property.findMany({
+        ctx.prisma.properties.findMany({
           where,
           skip,
           take: count,
         }),
-        ctx.prisma.property.count({ where }),
+        ctx.prisma.properties.count({ where }),
       ]);
 
       const hasMore = skip + count < totalCount;

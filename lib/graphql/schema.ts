@@ -13,7 +13,7 @@ const typeDefs = `#graphql
 
   type PropertyResponse {
     properties : [Property]
-    hasMore : boolean
+    hasMore : Boolean
     totalCount : Int
   }
 
