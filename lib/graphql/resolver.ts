@@ -54,6 +54,19 @@ const resolvers = {
         totalCount,
       };
     },
+
+    get_property: async (_parent: any, args: any, ctx: Context) => {
+      const property = await ctx.prisma.properties.findUnique({
+        where: {
+          id: parseInt(args.id),
+        },
+      });
+
+      return {
+        ...property,
+        images: JSON.parse(property.images as string),
+      };
+    },
   },
 };
 

@@ -27,6 +27,8 @@ const typeDefs = `#graphql
       minArea: Float, 
       maxArea: Float
     ): PropertyResponse
+
+    get_property(id : ID): Property
   }
 `;
 

@@ -17,7 +17,7 @@ const images = [
 const getRandomData = () => ({
   project: faker.company.name(),
   title: faker.lorem.words(3),
-  description: faker.lorem.sentence(),
+  description: faker.lorem.paragraph(),
   price: parseFloat(faker.commerce.price({ min: 5000, max: 15000, dec: 2 })),
   bedrooms: faker.number.int({ min: 1, max: 5 }),
   area: faker.number.int({ min: 100, max: 2500 }),
