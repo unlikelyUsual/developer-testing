@@ -43,7 +43,7 @@ const seed = async () => {
       );
     }
 
-    await chunkedPromiseAll(chunks, 10);
+    await chunkedPromiseAll(chunks, 5);
 
     console.log("Seeding finished");
   } catch (err) {

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "seed": "prisma db seed",
     "generate": "npx prisma migrate dev --name init",
-    "deploy": "prisma migrate deploy && tsx prisma/seed.ts"
+    "deploy": "npx prisma migrate deploy && tsx prisma/seed.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
