@@ -32,14 +32,11 @@ export const ListingsGrid = ({
                 <Text as="p" size="6" weight={"bold"}>
                   {formatToUSD(p.price)}
                 </Text>
-                <Text as="p" size="4">
+                <Text as="p" size="2">
                   {p.bedrooms}BHK &bull; {p.area} sq.ft.
                 </Text>
-                <Text as="p" size="3" truncate>
-                  {p.title}
-                </Text>
-                <Text as="p" size="2" truncate>
-                  {p.description}
+                <Text as="p" size="4" truncate>
+                  {p.project}
                 </Text>
               </Box>
             </Link>

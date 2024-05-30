@@ -1,29 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
-import createApolloClient from "@/app/apolloClient";
+"use client";
+
 import { GET_PROPERTY } from "@/lib/graphql/queries";
 import { formatToUSD } from "@/util/number";
+import { useQuery } from "@apollo/client";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import {
-  Box,
-  Callout,
-  Card,
-  Container,
-  Flex,
-  Inset,
-  Spinner,
-  Text,
-} from "@radix-ui/themes";
+import { Box, Callout, Container, Flex, Spinner, Text } from "@radix-ui/themes";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-export default async function ListingPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const client = createApolloClient();
-
-  const { loading, data, error } = await client.query({
-    query: GET_PROPERTY,
-    context: {},
+export default function ListingPage({ params }: { params: { id: string } }) {
+  const { loading, data, error } = useQuery(GET_PROPERTY, {
     variables: {
       id: parseInt(params.id),
     },
@@ -69,7 +58,21 @@ export default async function ListingPage({
         overflow={"scroll"}
         style={{ scrollSnapType: "x" }}
       >
-        {data.get_property.images.map((i: string, idx: number) => (
+        <Swiper
+          pagination={{
+            type: "fraction",
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {data.get_property.images.map((i: string, idx: number) => (
+            <SwiperSlide key={idx}>
+              <img src={i} alt={i} className="w-100"></img>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        {/* {data.get_property.images.map((i: string, idx: number) => (
           <Box
             flexShrink={"0"}
             style={{ scrollSnapAlign: "start" }}
@@ -82,7 +85,7 @@ export default async function ListingPage({
               </Inset>
             </Card>
           </Box>
-        ))}
+        ))} */}
       </Flex>
       <Text size={"9"} as="p">
         {data.get_property.title}

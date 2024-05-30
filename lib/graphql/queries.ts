@@ -25,9 +25,6 @@ export const GET_PROPERTIES = gql`
     ) {
       properties {
         id
-        type
-        title
-        description
         price
         project
         area

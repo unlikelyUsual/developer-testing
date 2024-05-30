@@ -24,10 +24,56 @@ docker-compose up
 ```
 
 ### 3. Look out for seeding of database (takes around 3-4 min for 1 million rows)
+
 <img width="515" alt="Screenshot 2024-05-30 at 9 51 28 PM" src="https://github.com/unlikelyUsual/developer-testing/assets/23253492/949492ff-858e-4d18-a05f-d5bfb7d1e2f1">
 
-
 ### 4. Server started at localhost:3000
+
 ![image](https://github.com/unlikelyUsual/developer-testing/assets/23253492/4c7aa09f-2b1d-45ee-8218-792ac6d0cac7)
 
+### 5. Click on Search button with filter update
 
+- It redirect to same page with new filters value in query parameter as Json stringified
+
+### 6. Click on card to view the property detail
+
+## Details
+
+### Table Schema
+
+```sql
+CREATE TABLE `properties` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `project` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `price` DOUBLE NOT NULL,
+    `bedrooms` INTEGER NOT NULL,
+    `area` DOUBLE NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `type` ENUM('SALE', 'RENT') NOT NULL,
+    `images` JSON NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    INDEX `properties_type_idx`(`type`),
+    INDEX `properties_price_idx`(`price`),
+    INDEX `properties_bedrooms_idx`(`bedrooms`),
+    INDEX `properties_area_idx`(`area`),
+    INDEX `properties_type_price_idx`(`type`, `price`),
+    INDEX `properties_type_bedrooms_idx`(`type`, `bedrooms`),
+    INDEX `properties_type_area_idx`(`type`, `area`),
+    INDEX `properties_price_bedrooms_idx`(`price`, `bedrooms`),
+    INDEX `properties_price_area_idx`(`price`, `area`),
+    INDEX `properties_bedrooms_area_idx`(`bedrooms`, `area`),
+    INDEX `properties_type_price_bedrooms_area_idx`(`type`, `price`, `bedrooms`, `area`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+- For handling large scale of 1 million rows search, I've created combination of index on all the relevant filter fields
+
+### Wait for it script for running seed command until mysql container is live
+
+```bash
+./wait-for-it.sh mysql:3306 -- npm run deploy && npm run start
+```
