@@ -85,7 +85,7 @@ export const ViewListings = (props: {
         </Callout.Root>
       )}
       {data && data.get_properties && (
-        <ListingsGrid listings={data.get_properties.properties} />
+        <ListingsGrid listings={data.get_properties.properties}></ListingsGrid>
       )}
     </Flex>
   );

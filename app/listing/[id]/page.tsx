@@ -90,11 +90,11 @@ export default async function ListingPage({
       <Text style={{ opacity: 0.6 }} size={"4"} as="p">
         {data.get_property.description}
       </Text>
-      <Text as="p" mt="4">
-        Posted by Owner
+      <Text as="p" mt="4" size={"6"}>
+        Posted by Property Owner
       </Text>
-      <Text style={{ opacity: 0.6 }} as="p">
-        contact on email
+      <Text style={{ opacity: 0.6 }} size={"2"} as="p">
+        Contact : +91 88912XXXX
       </Text>
     </Container>
   );
