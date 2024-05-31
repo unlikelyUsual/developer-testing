@@ -23,8 +23,8 @@ export const ListingsGrid = ({
               <Inset clip="padding-box" side="top" pb="current">
                 <img
                   className="inset-card-image"
-                  src={p.images[0]}
-                  alt={p.images[0]}
+                  src={p.thumbnail}
+                  alt={p.thumbnail}
                   style={{ maxWidth: "20rem" }}
                 />
               </Inset>

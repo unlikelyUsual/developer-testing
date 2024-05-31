@@ -38,7 +38,7 @@ export default function ListingPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <Container size="3">
+    <Container size="3" py={"7"}>
       <Box mb="4">
         <Text size="8" weight={"bold"}>
           {formatToUSD(data.get_property.price)}
@@ -72,32 +72,21 @@ export default function ListingPage({ params }: { params: { id: string } }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* {data.get_property.images.map((i: string, idx: number) => (
-          <Box
-            flexShrink={"0"}
-            style={{ scrollSnapAlign: "start" }}
-            width={"25rem"}
-            key={idx}
-          >
-            <Card>
-              <Inset clip={"padding-box"}>
-                <img src={i} alt={i} />
-              </Inset>
-            </Card>
-          </Box>
-        ))} */}
       </Flex>
-      <Text size={"9"} as="p">
+      <Text size={"9"} as="p" mt={"6"}>
+        {data.get_property.project}
+      </Text>
+      <Text size={"6"} as="p">
         {data.get_property.title}
       </Text>
       <Text style={{ opacity: 0.6 }} size={"4"} as="p">
         {data.get_property.description}
       </Text>
-      <Text as="p" mt="4" size={"6"}>
+      <Text as="p" mt="4" size={"4"}>
         Posted by Property Owner
       </Text>
-      <Text style={{ opacity: 0.6 }} size={"2"} as="p">
-        Contact : +91 88912XXXX
+      <Text style={{ opacity: 0.6 }} size={"2"} as="p" mb={"5"}>
+        Contact : 61299-4312
       </Text>
     </Container>
   );

@@ -6,12 +6,13 @@ const prisma = new PrismaClient();
 const BATCH_SIZE = 30_000;
 const TOTAL_ROWS = 10_00_000; // 1 million rows
 
+const category = "Property";
 const images = [
-  "https://picsum.photos/seed/OJACxf/640/480",
-  "https://loremflickr.com/640/480?lock=7189725353869312",
-  "https://loremflickr.com/640/480?lock=1121878999564288",
-  "https://loremflickr.com/640/480?lock=4340480796000256",
-  "https://picsum.photos/seed/aPezNbq/640/480",
+  faker.image.urlLoremFlickr({ category }),
+  faker.image.urlLoremFlickr({ category }),
+  faker.image.urlLoremFlickr({ category }),
+  faker.image.urlLoremFlickr({ category }),
+  faker.image.urlLoremFlickr({ category }),
 ];
 
 const getRandomData = () => ({
@@ -20,6 +21,11 @@ const getRandomData = () => ({
   description: faker.lorem.sentence(),
   price: parseFloat(faker.commerce.price({ min: 5000, max: 15000, dec: 2 })),
   bedrooms: faker.number.int({ min: 1, max: 5 }),
+  thumbnail: faker.image.urlLoremFlickr({
+    category,
+    width: 600,
+    height: 600,
+  }),
   area: faker.number.int({ min: 100, max: 2500 }),
   type: faker.helpers.arrayElement([PropertyType.SALE, PropertyType.RENT]),
   images: JSON.stringify(

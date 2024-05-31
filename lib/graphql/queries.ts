@@ -27,9 +27,9 @@ export const GET_PROPERTIES = gql`
         id
         price
         project
+        thumbnail
         area
         bedrooms
-        images
       }
       hasMore
       totalCount

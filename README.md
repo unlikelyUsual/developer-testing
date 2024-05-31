@@ -1,4 +1,6 @@
-# Next.js with Prisma, MySQL, and Apollo Client
+# Property Search
+
+## Built with Next.js with Prisma, MySQL, and Apollo Client
 
 This repository contains a sample setup for a Next.js application using Prisma as the ORM, MySQL as the database, and Apollo Client for GraphQL.
 

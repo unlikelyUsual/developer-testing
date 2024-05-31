@@ -5,6 +5,7 @@ const typeDefs = `#graphql
     title: String
     price: Float
     bedrooms: Int
+    thumbnail : String
     area: Float
     description: String
     type: String
