@@ -23,7 +23,7 @@ model properties {
   area        Float
   description String
   type        PropertyType
-  thumbnail   String
+  thumbnail   String @db.MediumText
   images      Json
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())

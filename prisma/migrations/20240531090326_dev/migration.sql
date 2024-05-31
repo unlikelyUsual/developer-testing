@@ -8,6 +8,7 @@ CREATE TABLE `properties` (
     `area` DOUBLE NOT NULL,
     `description` VARCHAR(191) NOT NULL,
     `type` ENUM('SALE', 'RENT') NOT NULL,
+    `thumbnail` MEDIUMTEXT NOT NULL,
     `images` JSON NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
