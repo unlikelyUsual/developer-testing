@@ -26,18 +26,19 @@ docker-compose up
 ```
 
 ### 3. Look out for seeding of database (takes around 3-4 min for 1 million rows)
+<img width="612" alt="Screenshot 2024-05-31 at 12 35 29 PM" src="https://github.com/unlikelyUsual/developer-testing/assets/23253492/91ad0997-804c-46d5-b44a-f24ca26fd128">
 
-<img width="515" alt="Screenshot 2024-05-30 at 9 51 28 PM" src="https://github.com/unlikelyUsual/developer-testing/assets/23253492/949492ff-858e-4d18-a05f-d5bfb7d1e2f1">
 
 ### 4. Server started at localhost:3000
 
 ![image](https://github.com/unlikelyUsual/developer-testing/assets/23253492/4c7aa09f-2b1d-45ee-8218-792ac6d0cac7)
 
 ### 5. Click on Search button with filter update
-
 - It redirect to same page with new filters value in query parameter as Json stringified
 
 ### 6. Click on card to view the property detail
+![7d1884138b4f45d57869b66eae308082](https://github.com/unlikelyUsual/developer-testing/assets/23253492/c5b52593-d9e4-4d71-ba54-c2a86464f577)
+
 
 ## Details
 
@@ -53,6 +54,7 @@ CREATE TABLE `properties` (
     `area` DOUBLE NOT NULL,
     `description` VARCHAR(191) NOT NULL,
     `type` ENUM('SALE', 'RENT') NOT NULL,
+    `thumbnail` MEDIUMTEXT NOT NULL,
     `images` JSON NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -70,6 +72,7 @@ CREATE TABLE `properties` (
     INDEX `properties_type_price_bedrooms_area_idx`(`type`, `price`, `bedrooms`, `area`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 ```
 
 - For handling large scale of 1 million rows search, I've created combination of index on all the relevant filter fields
