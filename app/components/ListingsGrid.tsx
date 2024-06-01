@@ -2,6 +2,7 @@
 
 import { formatToUSD } from "@/util/number";
 import { Box, Card, Grid, Inset, Text } from "@radix-ui/themes";
+import Image from "next/image";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { Listing } from "../types";
@@ -21,12 +22,26 @@ export const ListingsGrid = ({
           >
             <Link href={`/listing/${p.id}`} target="_blank">
               <Inset clip="padding-box" side="top" pb="current">
-                <img
+                <Image
                   className="inset-card-image"
+                  src={p.thumbnail}
+                  alt={`Property image`}
+                  width={300}
+                  height={300}
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPMvv+9HgAGwALCkjV6aAAAAABJRU5ErkJggg=="
+                  placeholder="blur"
+                  priority={false} // Prioritize the first image
+                  loading={"lazy"} // Eagerly load the first image
+                  style={{ maxWidth: "20rem" }}
+                />
+
+                {/* <img
+                  className="inset-card-image"
+                  loading="eager"
                   src={p.thumbnail}
                   alt={p.thumbnail}
                   style={{ maxWidth: "20rem" }}
-                />
+                /> */}
               </Inset>
               <Box maxWidth={"18rem"}>
                 <Text as="p" size="6" weight={"bold"}>

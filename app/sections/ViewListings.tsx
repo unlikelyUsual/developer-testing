@@ -6,11 +6,12 @@ import {
   ArrowRightIcon,
   ExclamationTriangleIcon,
 } from "@radix-ui/react-icons";
-import { Box, Button, Callout, Flex, Spinner } from "@radix-ui/themes";
+import { Box, Button, Callout, Flex } from "@radix-ui/themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { PropertyFilters } from "../components/inputs/PropertyFilters";
 import { ListingsGrid } from "../components/ListingsGrid";
+import { ListingsGridLoading } from "../components/ListingsGridLoading";
 import { FETCH_LISTINGS_LIMIT } from "../constants";
 import { FilterOptions, Listing } from "../types/index";
 
@@ -90,11 +91,7 @@ export const ViewListings = (props: {
         <PropertyFilters filterOptions={filterOptions} onSubmit={onSubmit} />
       </Box>
 
-      {loading && (
-        <Flex justify={"center"}>
-          <Spinner size="3" />
-        </Flex>
-      )}
+      {loading && <ListingsGridLoading />}
 
       {error && (
         <div className="flex justify-items-center text-center w-10">

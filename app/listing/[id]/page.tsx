@@ -5,6 +5,7 @@ import { formatToUSD } from "@/util/number";
 import { useQuery } from "@apollo/client";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { Box, Callout, Container, Flex, Spinner, Text } from "@radix-ui/themes";
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -68,7 +69,17 @@ export default function ListingPage({ params }: { params: { id: string } }) {
         >
           {data.get_property.images.map((i: string, idx: number) => (
             <SwiperSlide key={idx}>
-              <img src={i} alt={i} className="w-100"></img>
+              <Image
+                className="inset-card-image"
+                src={i}
+                alt={`Property image`}
+                width={300}
+                height={300}
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPMvv+9HgAGwALCkjV6aAAAAABJRU5ErkJggg=="
+                placeholder="blur"
+                priority={false} // Prioritize the first image
+                loading={"lazy"} // Eagerly load the first image
+              />
             </SwiperSlide>
           ))}
         </Swiper>

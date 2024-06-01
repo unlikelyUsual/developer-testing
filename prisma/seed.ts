@@ -12,6 +12,9 @@ const images = [
   "https://picsum.photos/seed/aPezNbq/640/480",
   "https://loremflickr.com/640/480?lock=7189725353869312",
   "https://loremflickr.com/640/480?lock=1121878999564288",
+  // "https://acropolis-wp-content-uploads.s3.us-west-1.amazonaws.com/Futuristic-Construction-Hero-image-1.webp",
+  // "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dubai_Marina_Skyline.jpg/640px-Dubai_Marina_Skyline.jpg",
+  // "https://img.freepik.com/premium-photo/geometric-facades-residential-building_294094-27.jpg",
 ];
 
 const getRandomData = () => ({
