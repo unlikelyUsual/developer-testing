@@ -39,6 +39,9 @@ docker-compose up
 ### 6. Click on card to view the property detail
 ![7d1884138b4f45d57869b66eae308082](https://github.com/unlikelyUsual/developer-testing/assets/23253492/c5b52593-d9e4-4d71-ba54-c2a86464f577)
 
+### 7. Lighthouse Score
+<img width="1238" alt="Screenshot 2024-06-01 at 9 18 36 AM" src="https://github.com/unlikelyUsual/developer-testing/assets/23253492/046f80ac-68ec-4079-b9a4-b85f471ad28e">
+
 
 ## Details
 
